@@ -1,12 +1,15 @@
 FROM debian:stretch
 RUN apt-get update && apt-get install --no-install-recommends -y \
-  wget \
+  curl \
+  gnupg2 \
   lsb-release \
   apt-transport-https \
   ca-certificates
-RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN curl -sL https://packages.sury.org/php/apt.gpg > /etc/apt/trusted.gpg.d/php.gpg
 RUN echo "deb https://packages.sury.org/php/ stretch main" > /etc/apt/sources.list.d/php.list
 RUN apt-get update && apt-get install --no-install-recommends -y \
+    nodejs \
     tar \
     bzip2 \
     apache2 \

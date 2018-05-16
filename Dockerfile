@@ -49,5 +49,6 @@ RUN curl -sL https://getcomposer.org/installer > composer-setup.php \
   && apt-get update && apt-get install --no-install-recommends -y \
     git \
     zip \
+    unzip \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /usr/share/man/*

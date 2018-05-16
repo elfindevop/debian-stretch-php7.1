@@ -1,5 +1,6 @@
 FROM debian:stretch-slim
 
+# Install prerequisites for node/php7.1 installations
 RUN apt-get update && apt-get install --no-install-recommends -y \
     curl \
     gnupg2 \
@@ -8,7 +9,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /usr/share/man/*
-
 
 # Install node/uglifyjs
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
@@ -22,15 +22,15 @@ RUN curl -sL https://packages.sury.org/php/apt.gpg > /etc/apt/trusted.gpg.d/php.
   && apt-get update && apt-get install --no-install-recommends -y \
     bzip2 \
     php7.1 \
-    php7.1-xml \
     php7.1-dom \
+    php7.1-gd \
     php7.1-intl \
-    php7.1-sqlite3 \
     php7.1-mbstring \
+    php7.1-sqlite3 \
+    php7.1-xml \
     tar \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /usr/share/man/*
-
 
 # Install web server
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -40,7 +40,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     modsecurity-crs \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /usr/share/man/*
-
 
 # Install composer and dependencies
 RUN curl -sL https://getcomposer.org/installer > composer-setup.php \
